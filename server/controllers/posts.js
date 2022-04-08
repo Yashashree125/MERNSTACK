@@ -5,6 +5,14 @@ import PostMessage from '../routes/models/postMessage.js';
 
 const router = express.Router();
 
+export const index = async (req, res) => {
+    try {                
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
 export const getPosts = async (req, res) => { 
     try {
         const postMessages = await PostMessage.find();
